@@ -1,24 +1,31 @@
-import logo from './logo.svg';
 import './App.css';
+import Navebar from './components/Navebar';
+import Createempl from './components/Createempl';
+import Login from './components/Login';
+import Editempl from './components/Editempl';
+import Employlist from './components/Employlist';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import React, { useState } from 'react';
+import Dashboard from './components/Dashboard';
 
 function App() {
+  const [employees, setEmployees] = useState([]);
+
+  const addEmployee = (employeeData) => {
+    setEmployees([...employees, employeeData]);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Navebar />
+      <Routes>
+        <Route path="/Login" element={<Login />} />
+        <Route path="/Dashboard" element={<Dashboard />} />
+        <Route path="/Employlist" element={<Employlist employees={employees} />} />
+        <Route path="/Createempl" element={<Createempl addEmployee={addEmployee} />} />
+        <Route path="/Editempl" element={<Editempl />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
