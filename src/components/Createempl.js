@@ -26,7 +26,7 @@ export default class Createempl extends Component {
       handleSubmit = (event) => {
         event.preventDefault();
         const { name, designation, course, email, gender, mobileNumber, image } = this.state;
-        // Construct employee data object
+        
         const employeeData = { name, designation, course, email, gender, mobileNumber, image };
         // Call the addEmployee function passed down from the parent component
         this.props.addEmployee(employeeData);
